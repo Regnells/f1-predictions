@@ -1,9 +1,10 @@
 import pymongo
+import config
 
 class GetMongoData:
     def __init__(self):
         # create client instance
-        self.client = pymongo.MongoClient("192.168.10.36", 27017, username="f1Admin", password="mongokungen123", authSource="f1")
+        self.client = pymongo.MongoClient("192.168.10.36", 27017, username=config.username, password=config.password, authSource="f1")
         # create database instance
         db = self.client.f1
 

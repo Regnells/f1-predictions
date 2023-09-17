@@ -1,7 +1,8 @@
 import pymongo
+import creds
 
 # Start connection to mongoDB
-client = pymongo.MongoClient("192.168.10.36", 27017, username="f1Admin", password="mongokungen123", authSource="f1")
+client = pymongo.MongoClient("192.168.10.36", 27017, username="f1Admin", password=creds.password, authSource="f1")
 
 # create database instance
 db = client.f1
