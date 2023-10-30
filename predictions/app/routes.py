@@ -6,6 +6,15 @@ from flask import render_template, url_for
 @app.route('/')
 @app.route('/index')
 def index():
-    standings = "test"
-    return render_template('index.html', title='Home', standings=standings)
+    return render_template('index.html', title='Home')
 
+@app.route('/standings')
+def standings():
+    mongo = MongoData()
+    standings = mongo.users_total_points().sort("totalPoints", -1)
+    #mongo.close()
+    return render_template('standings.html', title='Standings', standings=standings)
+
+@app.route('/tip')
+def tip():
+    return render_template('tip.html', title='Tip')

@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Rasmus silly website</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
-    </head>
-    <body>
-        <h1>F1 tippning</h1>
-        <h2>Ställning:</h2>
-        {% for i in standings %}
-            <p>{{ i }}</p>
-        {% endfor %}
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h1>F1 tippning</h1>
+<p>Här kan du se resultat, gissningar och ställning!</p>
+{% endblock %}

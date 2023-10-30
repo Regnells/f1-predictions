@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>F1 Tippning</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    </head>
+    <body>
+        <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('standings') }}">Ställning</a></li>
+                <li><a href="{{ url_for('tip') }}">Tippa</a></li>
+        </ul>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

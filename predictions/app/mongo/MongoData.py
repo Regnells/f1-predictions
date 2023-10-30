@@ -1,5 +1,5 @@
 import pymongo
-import config
+from app.mongo import config
 
 class MongoData:
     def __init__(self):
@@ -45,7 +45,9 @@ class MongoData:
                     None
         self.users.update_one({"_id": user}, {"$set": {"points": points}})
 
-
+    def users_total_points(self):
+        points = self.users.find({})
+        return points
 
 # test
 if __name__ == "__main__":
