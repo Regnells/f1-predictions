@@ -1,8 +1,70 @@
 {% extends "base.html" %}
-{% block title %}
+{% block second %}
     Rasmus silly website
 {% endblock %}
 
 {% block content %}
 <h1>F1 tippning</h1>
+<h2>Tippa:</h2>
+<form action="{{ url_for('tip') }}" method="post">
+    {{ form.hidden_tag() }}
+        <!--Selectfield race-->
+        <p>
+            {{ form.race.label }}<br>
+            {{ form.race(size=32) }}
+            {% for error in form.race.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        <p>
+            {{ form.user.label }}<br>
+            {{ form.user(size=32) }}
+            {% for error in form.user.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.first.label }}<br>
+            {{ form.first(size=32) }}
+            {% for error in form.first.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.second.label }}<br>
+            {{ form.second(size=32) }}
+            {% for error in form.second.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.third.label }}<br>
+            {{ form.third(size=32) }}
+            {% for error in form.third.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.fourth.label }}<br>
+            {{ form.fourth(size=32) }}
+            {% for error in form.fourth.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.fifth.label }}<br>
+            {{ form.fifth(size=32) }}
+            {% for error in form.fifth.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.sixth.label }}<br>
+            {{ form.sixth(size=32) }}
+            {% for error in form.sixth.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
 {% endblock %}
