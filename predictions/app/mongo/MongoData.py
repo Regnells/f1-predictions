@@ -110,7 +110,6 @@ class MongoData:
 if __name__ == "__main__":
     # Get winner of race "race" from collection "userGuess"
     mongo = MongoData()
-    users = mongo.get_races()
-    print(users)
+    standings = mongo.user_points().sort("totalPoints", -1)
 
     mongo.close()

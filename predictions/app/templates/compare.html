@@ -16,26 +16,70 @@
 </form>
 {% if user_guess %}
 <div class="child">
-    <h2>Gissning</h2>
-        <p>
-            <p>1: {{ user_guess[0] }}</p>
-            <p>2: {{ user_guess[1] }}</p>
-            <p>3: {{ user_guess[2] }}</p>
-            <p>4: {{ user_guess[3] }}</p>
-            <p>5: {{ user_guess[4] }}</p>
-            <p>6: {{ user_guess[5] }}</p>
-        </p>
+    <h2>{{ input_user.capitalize() }}</h2>
+    <table>
+        <tr>
+            <th>Position</th>
+            <th>Gissning</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>{{ user_guess.0 }}</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>{{ user_guess.1 }}</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>{{ user_guess.2 }}</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>{{ user_guess.3 }}</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>{{ user_guess.4 }}</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>{{ user_guess.5 }}</td>
+        </tr>
+    </table>
 </div>
 <div class="child">
     <h2>Resultat</h2>
-        <p>
-            <p>1: {{ race_result[0] }}</p>
-            <p>2: {{ race_result[1] }}</p>
-            <p>3: {{ race_result[2] }}</p>
-            <p>4: {{ race_result[3] }}</p>
-            <p>5: {{ race_result[4] }}</p>
-            <p>6: {{ race_result[5] }}</p>
-        </p>
+    <table>
+        <tr>
+            <th>Position</th>
+            <th>Resultat</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>{{ race_result.0 }}</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>{{ race_result.1 }}</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>{{ race_result.2 }}</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>{{ race_result.3 }}</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>{{ race_result.4 }}</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>{{ race_result.5 }}</td>
+        </tr>
+    </table>
 </div>
 {% endif %}
 {% endblock %}

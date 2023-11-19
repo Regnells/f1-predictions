@@ -5,9 +5,41 @@
 {% endblock %}
 
 {% block content %}
-    <h1>F1 tippning</h1>
-    <h2>Ställning:</h2>
-    {% for i in standings %}
-        <p>{{ i["_id"].capitalize() }} har {{ i["totalPoints"] }} poäng!</p>
-    {% endfor %}
+<h1>Ställning</h1>
+<table>
+    <tr>
+        <th>Placering</th>
+        <th>Namn</th>
+        <th>Poäng</th>
+        <th>Straffpoäng</th>
+        <th>Totalt</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>{{ standings[0]['_id'].capitalize() }}</td>
+        <td>{{ standings[0]['points'] }}</td>
+        <td>{{ standings[0]['penalty'] }}</td>
+        <td>{{ standings[0]['totalPoints'] }}</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>{{ standings[1]['_id'].capitalize() }}</td>
+        <td>{{ standings[1]['points'] }}</td>
+        <td>{{ standings[1]['penalty'] }}</td>
+        <td>{{ standings[1]['totalPoints'] }}</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>{{ standings[2]['_id'].capitalize() }}</td>
+        <td>{{ standings[2]['points'] }}</td>
+        <td>{{ standings[2]['penalty'] }}</td>
+        <td>{{ standings[2]['totalPoints'] }}</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>{{ standings[3]['_id'].capitalize() }}</td>
+        <td>{{ standings[3]['points'] }}</td>
+        <td>{{ standings[3]['penalty'] }}</td>
+        <td>{{ standings[3]['totalPoints'] }}</td>
+    </tr>
 {% endblock %}
