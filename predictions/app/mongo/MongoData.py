@@ -16,6 +16,13 @@ class MongoData:
     def close(self):
         self.client.close()
 
+    def get_users(self):
+        find_users = self.users.find({}, {"_id": 1})
+        users = []
+        for user in find_users:
+            users.append(user["_id"])
+        return users
+
     def get_races(self):
         get_races = self.userGuess.find({}, {"_id": 1})
         races = []
@@ -33,6 +40,14 @@ class MongoData:
     def get_user_guess(self, race, user):
         race = race.lower()
         user = user.lower()
+        query = self.userGuess.find_one({"_id": race}, {"_id": 0})
+        # Getting the actual race from the query
+        result_list = [value for key, value in query[user].items()]
+        return result_list
+    
+    def get_race_result(self, race):
+        user = "result"
+        race = race.lower()
         query = self.userGuess.find_one({"_id": race}, {"_id": 0})
         # Getting the actual race from the query
         result_list = [value for key, value in query[user].items()]
@@ -95,6 +110,7 @@ class MongoData:
 if __name__ == "__main__":
     # Get winner of race "race" from collection "userGuess"
     mongo = MongoData()
-    mongo.set_total_points("martin")
+    users = mongo.get_races()
+    print(users)
 
     mongo.close()

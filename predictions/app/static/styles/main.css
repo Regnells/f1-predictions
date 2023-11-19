@@ -12,7 +12,7 @@ body {
     background-color: #333;
   }
   
-h1, h2, p {
+h1, h2, p, form {
   padding: 0px 16px;
 }
 
@@ -37,4 +37,9 @@ li a:hover {
   all: unset;
   padding: 4px 8px;
   
+}
+.child {
+  display: inline-block;
+  padding: 0px 16px;
+  vertical-align: left;
 }

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Jämför gissning med resultat</h1>
+<form action="/compare" method="post">
+<select name="selectUser", class="Input">
+{% for user in users %}
+<option value="{{ user }}">{{ user }}</option>
+{% endfor %}
+</select>
+<select name="selectRace", class="Input">
+    {% for race in races %}
+    <option value="{{ race }}">{{ race }}</option>
+    {% endfor %}
+</select>
+<input type="submit" value="Jämför" class="Input">
+</form>
+{% if user_guess %}
+<div class="child">
+    <h2>Gissning</h2>
+        <p>
+            <p>1: {{ user_guess[0] }}</p>
+            <p>2: {{ user_guess[1] }}</p>
+            <p>3: {{ user_guess[2] }}</p>
+            <p>4: {{ user_guess[3] }}</p>
+            <p>5: {{ user_guess[4] }}</p>
+            <p>6: {{ user_guess[5] }}</p>
+        </p>
+</div>
+<div class="child">
+    <h2>Resultat</h2>
+        <p>
+            <p>1: {{ race_result[0] }}</p>
+            <p>2: {{ race_result[1] }}</p>
+            <p>3: {{ race_result[2] }}</p>
+            <p>4: {{ race_result[3] }}</p>
+            <p>5: {{ race_result[4] }}</p>
+            <p>6: {{ race_result[5] }}</p>
+        </p>
+</div>
+{% endif %}
+{% endblock %}

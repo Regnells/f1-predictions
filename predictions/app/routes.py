@@ -1,7 +1,7 @@
 from app import app
 from app.mongo.MongoData import MongoData
 from app.forms import guessForm
-from flask import render_template, url_for
+from flask import render_template, url_for, request
 
 
 @app.route('/')
@@ -25,3 +25,21 @@ def tip():
         mongo.add_user_guess(form.race.data, form.user.data, form.first.data, form.second.data, form.third.data, form.fourth.data, form.fifth.data, form.sixth.data)
 
     return render_template('tip.html', title='Tip', form=form)
+
+@app.route('/compare', methods=['GET', "POST"])
+def compare():
+    mongo = MongoData()
+    
+    users = mongo.get_users()
+    races = mongo.get_races()
+    input_user = request.form.get('selectUser')
+    input_race = request.form.get('selectRace')
+    user_guess = None
+    race_result = None
+
+    if request.method == 'POST':
+        user_guess = mongo.get_user_guess(input_race, input_user)
+        race_result = mongo.get_race_result(input_race)
+
+
+    return render_template('compare.html', title="Jämför", users=users, races=races, input_user=input_user, input_race=input_race, user_guess=user_guess, race_result=race_result)
