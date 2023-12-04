@@ -12,15 +12,17 @@ body {
     overflow: hidden;
     background-color: #333;
   }
-  
-h1, h2, p {
+
+h1, h2, p{
   padding: 0px 16px;
 }
-
+.formCompare{
+  padding: 0px 16px;
+}
 li {
     float: left;
   }
-  
+
 li a {
     display: block;
     color: white;
@@ -28,7 +30,7 @@ li a {
     padding: 14px 16px;
     text-decoration: none;
   }
-  
+
   /* Change the link color to #111 (black) on hover */
 li a:hover {
     background-color: #111;

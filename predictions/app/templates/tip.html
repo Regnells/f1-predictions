@@ -1,12 +1,8 @@
 {% extends "base.html" %}
-{% block second %}
-    Rasmus silly website
-{% endblock %}
-
 {% block content %}
 <h1>F1 tippning</h1>
 <h2>Tippa:</h2>
-<form action="{{ url_for('tip') }}" method="post">
+<form action="{{ url_for('tip') }}" method="post" class="formTip">
     {{ form.hidden_tag() }}
         <!--Selectfield race-->
         <p>

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Jämför gissning med resultat</h1>
-<form action="/compare" method="post">
+<form action="/compare" method="post", class="formCompare">
 <select name="selectUser", class="Input">
 {% for user in users %}
 <option value="{{ user }}">{{ user }}</option>
