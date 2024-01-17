@@ -5,12 +5,14 @@ from app.mongo import mongoconfig
 class MongoData:
     def __init__(self):
         # create client instance
-        self.client = pymongo.MongoClient("192.168.10.36", 27017, username=mongoconfig.username, password=mongoconfig.password, authSource=mongoconfig.authSource)
+        self.client = pymongo.MongoClient(mongoconfig.host, mongoconfig.port, username=mongoconfig.username, password=mongoconfig.password, authSource=mongoconfig.authSource)
         # create database instance
         db = self.client.f1
 
         # set up class variables
-        self.userGuess = db.userGuess
+        users = mongoconfig.users
+        guess = mongoconfig.guess
+        self.userGuess = db.guess
         self.users = db.users
 
     def close(self):
@@ -111,8 +113,6 @@ if __name__ == "__main__":
     # Get winner of race "race" from collection "userGuess"
     mongo = MongoData()
     users = ["anton", "martin", "jesper", "rasmus"]
-    for i in users:
-        mongo.calculate_points(i)
-        mongo.set_total_points(i)
+    print(mongo.get_users())
 
     mongo.close()
