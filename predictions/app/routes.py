@@ -19,12 +19,35 @@ def standings():
 @app.route('/tip', methods=['GET', 'POST'])
 def tip():
     mongo = MongoData()
-    form = guessForm()
+    drivers = mongo.get_drivers()
+    races = mongo.get_races()
+    users = mongo.get_users()
 
-    if form.validate_on_submit():
-        mongo.add_user_guess(form.race.data, form.user.data, form.first.data, form.second.data, form.third.data, form.fourth.data, form.fifth.data, form.sixth.data)
-
-    return render_template('tip.html', title='Tip', form=form)
+    if request.method == 'POST':
+        race = request.form.get('selectRace')
+        user = request.form.get('selectUser')
+        first = request.form.get('selectFirst')
+        second = request.form.get('selectSecond')
+        third = request.form.get('selectThird')
+        fourth = request.form.get('selectFourth')
+        fifth = request.form.get('selectFifth')
+        sixth = request.form.get('selectSixth')
+        mongo.add_user_guess(
+            race,
+            user,
+            first,
+            second,
+            third,
+            fourth,
+            fifth,
+            sixth
+        )
+    #mongo.close()
+    return render_template('tip.html', 
+                           title='Tip', 
+                           drivers=drivers, 
+                           races=races,
+                           users=users)
 
 @app.route('/compare', methods=['GET', "POST"])
 def compare():

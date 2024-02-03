@@ -94,21 +94,30 @@ class MongoData:
                                               "sixth": sitxth.lower()}})
     
     def add_user_guess(self, race, user, first, second, third, fourth, fifth, sitxth ):
-        race = race.lower()
         self.userGuess.update_one(
-            {"_id": race.lower()},
-            {"$set": {user: {"first": first.lower(), 
-                             "second": second.lower(), 
-                             "third": third.lower(), 
-                             "fourth": fourth.lower(), 
-                             "fifth": fifth.lower(), 
-                             "sixth": sitxth.lower()} } },
-            upsert=True
-        )
+                {"_id": race},
+                {"$set": {user: {"first": first, 
+                                 "second": second, 
+                                 "third": third, 
+                                 "fourth": fourth, 
+                                 "fifth": fifth, 
+                                 "sixth": sitxth} } },
+                upsert=True
+            )
 
+    # I'm just lazy and will keep all drivers here, no use for them in the
+    # database yet
+    def get_drivers(self):
+        drivers = [
+            "verstappen","perez", "russell", "hamilton",
+            "leclerc", "sainz", "pastri", "norris",
+            "stroll", "alonso", "ocon", "gasly",
+            "albon", "sargeant", "ricciardo", "tsunoda",
+            "bottas,", "zhou", "magnussen", "hulkenberg"
+        ]
+        return drivers
 # test
 if __name__ == "__main__":
     # Get winner of race "race" from collection "userGuess"
     mongo = MongoData()
-    print(mongo.get_races())
     mongo.close()

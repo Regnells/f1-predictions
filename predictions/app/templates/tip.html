@@ -2,65 +2,55 @@
 {% block content %}
 <h1>F1 tippning</h1>
 <h2>Tippa:</h2>
-<form action="{{ url_for('tip') }}" method="post" class="formTip">
-    {{ form.hidden_tag() }}
-        <!--Selectfield race-->
-        <p>
-            {{ form.race.label }}<br>
-            {{ form.race(size=32) }}
-            {% for error in form.race.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        <p>
-            {{ form.user.label }}<br>
-            {{ form.user(size=32) }}
-            {% for error in form.user.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.first.label }}<br>
-            {{ form.first(size=32) }}
-            {% for error in form.first.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.second.label }}<br>
-            {{ form.second(size=32) }}
-            {% for error in form.second.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.third.label }}<br>
-            {{ form.third(size=32) }}
-            {% for error in form.third.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.fourth.label }}<br>
-            {{ form.fourth(size=32) }}
-            {% for error in form.fourth.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.fifth.label }}<br>
-            {{ form.fifth(size=32) }}
-            {% for error in form.fifth.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.sixth.label }}<br>
-            {{ form.sixth(size=32) }}
-            {% for error in form.sixth.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
-
+<form action="/tip" method="POST" class="formTip">
+    <select name="selectUser", class="Input">
+        {% for user in users %}
+        <option value="{{ user }}">{{ user }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <select name="selectRace", class="Input">
+        {% for race in races %}
+        <option value="{{ race }}">{{ race }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <select name="selectFirst", class="Input">
+        {% for driver in drivers %}
+        <option value="{{ driver }}">1. {{ driver }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <select name="selectSecond", class="Input">
+        {% for driver in drivers %}
+        <option value="{{ driver }}">2. {{ driver }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <select name="selectThird", class="Input">
+        {% for driver in drivers %}
+        <option value="{{ driver }}">3. {{ driver }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <select name="selectFourth", class="Input">
+        {% for driver in drivers %}
+        <option value="{{ driver }}">4. {{ driver }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <select name="selectFifth", class="Input">
+        {% for driver in drivers %}
+        <option value="{{ driver }}">5. {{ driver }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <select name="selectSixth", class="Input">
+        {% for driver in drivers %}
+        <option value="{{ driver }}">6. {{ driver }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <input type="submit" value="Tip" class="Input">
+</form>
 {% endblock %}

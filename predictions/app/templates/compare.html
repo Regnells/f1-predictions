@@ -2,17 +2,17 @@
 {% block content %}
 <h1>Jämför gissning med resultat</h1>
 <form action="/compare" method="post", class="formCompare">
-<select name="selectUser", class="Input">
-{% for user in users %}
-<option value="{{ user }}">{{ user }}</option>
-{% endfor %}
-</select>
-<select name="selectRace", class="Input">
-    {% for race in races %}
-    <option value="{{ race }}">{{ race }}</option>
+    <select name="selectUser", class="Input">
+    {% for user in users %}
+    <option value="{{ user }}">{{ user }}</option>
     {% endfor %}
-</select>
-<input type="submit" value="Jämför" class="Input">
+    </select>
+    <select name="selectRace", class="Input">
+        {% for race in races %}
+        <option value="{{ race }}">{{ race }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Jämför" class="Input">
 </form>
 {% if user_guess %}
 <div class="child">
