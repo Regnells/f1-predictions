@@ -10,10 +10,8 @@ class MongoData:
         db = self.client.f1
 
         # set up class variables
-        users = mongoconfig.users
-        guess = mongoconfig.guess
-        self.userGuess = db.guess
-        self.users = db.users
+        self.users = db[mongoconfig.users]
+        self.userGuess = db[mongoconfig.guess]
 
     def close(self):
         self.client.close()
@@ -112,7 +110,5 @@ class MongoData:
 if __name__ == "__main__":
     # Get winner of race "race" from collection "userGuess"
     mongo = MongoData()
-    users = ["anton", "martin", "jesper", "rasmus"]
-    print(mongo.get_users())
-
+    print(mongo.get_races())
     mongo.close()
