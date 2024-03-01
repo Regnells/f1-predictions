@@ -42,4 +42,99 @@
         <td>{{ standings[3]['penalty'] }}</td>
         <td>{{ standings[3]['totalPoints'] }}</td>
     </tr>
+</table>
+
+<form action="/standings" method="post" class="formPenalty">
+    <h3>Lägg till straffpoäng</h3>
+    <select name="selectUser", class="Input">
+        {% for user in users %}
+        <option value="{{ user }}">{{ user }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Lägg till" class="Input">
+</form>
+
+<div class="yearlyTips">
+    <h3>Årstippningar</h3>
+    <table>
+        <tr>
+            <th>Placering</th>
+            <th>{{ users[0] }}</th>
+            <th>{{ users[1] }}</th>
+            <th>{{ users[2] }}</th>
+            <th>{{ users[3] }}</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>{{ user_1_drivers[0] }}</td>
+            <td>{{ user_2_drivers[0] }}</td>
+            <td>{{ user_3_drivers[0] }}</td>
+            <td>{{ user_4_drivers[0] }}</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>{{ user_1_drivers[1] }}</td>
+            <td>{{ user_2_drivers[1] }}</td>
+            <td>{{ user_3_drivers[1] }}</td>
+            <td>{{ user_4_drivers[1] }}</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>{{ user_1_drivers[2] }}</td>
+            <td>{{ user_2_drivers[2] }}</td>
+            <td>{{ user_3_drivers[2] }}</td>
+            <td>{{ user_4_drivers[2] }}</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>{{ user_1_drivers[3] }}</td>
+            <td>{{ user_2_drivers[3] }}</td>
+            <td>{{ user_3_drivers[3] }}</td>
+            <td>{{ user_4_drivers[3] }}</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>{{ user_1_drivers[4] }}</td>
+            <td>{{ user_2_drivers[4] }}</td>
+            <td>{{ user_3_drivers[4] }}</td>
+            <td>{{ user_4_drivers[4] }}</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>{{ user_1_drivers[5] }}</td>
+            <td>{{ user_2_drivers[5] }}</td>
+            <td>{{ user_3_drivers[5] }}</td>
+            <td>{{ user_4_drivers[5] }}</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>{{ user_1_drivers[6] }}</td>
+            <td>{{ user_2_drivers[6] }}</td>
+            <td>{{ user_3_drivers[6] }}</td>
+            <td>{{ user_4_drivers[6] }}</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>{{ user_1_drivers[7] }}</td>
+            <td>{{ user_2_drivers[7] }}</td>
+            <td>{{ user_3_drivers[7] }}</td>
+            <td>{{ user_4_drivers[7] }}</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>{{ user_1_drivers[8] }}</td>
+            <td>{{ user_2_drivers[8] }}</td>
+            <td>{{ user_3_drivers[8] }}</td>
+            <td>{{ user_4_drivers[8] }}</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>{{ user_1_drivers[9] }}</td>
+            <td>{{ user_2_drivers[9] }}</td>
+            <td>{{ user_3_drivers[9] }}</td>
+            <td>{{ user_4_drivers[9] }}</td>
+        </tr>
+    </table>
+</div>
+
 {% endblock %}

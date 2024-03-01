@@ -30,6 +30,18 @@ class MongoData:
             races.append(race['_id'])
         return races
     
+    # I'm just lazy and will keep all drivers here, no use for them in the
+    # database yet
+    def get_drivers(self):
+        drivers = [
+            "verstappen","perez", "russell", "hamilton",
+            "leclerc", "sainz", "pastri", "norris",
+            "stroll", "alonso", "ocon", "gasly",
+            "albon", "sargeant", "ricciardo", "tsunoda",
+            "bottas,", "zhou", "magnussen", "hulkenberg"
+        ]
+        return drivers
+    
     # Get winners from race, returns list of winners.
     def top_six(self, race):
         race = race.lower()
@@ -53,6 +65,18 @@ class MongoData:
         result_list = [value for key, value in query[user].items()]
         return result_list
     
+    def get_user_top_drivers(self, user):
+        user = user.lower()
+        query = self.users.find_one({"_id": user}, {"top10Drivers": 1})
+        drivers_list = [value for key, value in query['top10Drivers'].items()]
+        return drivers_list
+    
+    def get_user_top_constructors(self, user):
+        user = user.lower()
+        query = self.users.find_one({"_id": user}, {"top10Constructors": 1})
+        constructors_list = [value for key, value in query['top10Constructors'].items()]
+        return constructors_list
+    
     def calculate_points(self, user):
         races = self.get_races()
         user = user.lower()
@@ -69,10 +93,6 @@ class MongoData:
                     None
         self.users.update_one({"_id": user}, {"$set": {"points": points}})
 
-    def add_penalty(self, user):
-        user = user.lower()
-        self.users.update_one({"_id": user}, {"$inc": {"penalty": +5}})
-
     def set_total_points(self, user):
         points = self.users.find_one({"_id": user.lower()}, {"points": 1})
         penalty = self.users.find_one({"_id": user.lower()}, {"penalty": 1})
@@ -80,7 +100,7 @@ class MongoData:
         self.users.update_one({"_id": user.lower()}, {"$set": {"totalPoints": total_points}})
 
     def user_points(self):
-        points = self.users.find({})
+        points = self.users.find({}, {"top10Drivers": 0, "top10Constructors": 0})
         return points
     
     def add_result(self, race, first, second, third, fourth, fifth, sitxth):
@@ -104,20 +124,12 @@ class MongoData:
                                  "sixth": sitxth} } },
                 upsert=True
             )
+        
+    def add_penalty(self, user):
+        user = user.lower()
+        self.users.update_one({"_id": user}, {"$inc": {"penalty": +5}})
 
-    # I'm just lazy and will keep all drivers here, no use for them in the
-    # database yet
-    def get_drivers(self):
-        drivers = [
-            "verstappen","perez", "russell", "hamilton",
-            "leclerc", "sainz", "pastri", "norris",
-            "stroll", "alonso", "ocon", "gasly",
-            "albon", "sargeant", "ricciardo", "tsunoda",
-            "bottas,", "zhou", "magnussen", "hulkenberg"
-        ]
-        return drivers
 # test
 if __name__ == "__main__":
-    # Get winner of race "race" from collection "userGuess"
     mongo = MongoData()
     mongo.close()

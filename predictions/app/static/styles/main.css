@@ -22,6 +22,15 @@ h1, h2, p{
 .formTip{
   padding: 0px 16px;
 }
+.formPenalty{
+  padding: 0px 16px;
+  
+}
+.yearlyTips{
+  h3 {
+    padding: 0px 16px;
+  }
+}
 select {
   margin: 5px 0;  /* Add vertical margin */
 }

@@ -9,12 +9,44 @@ from flask import render_template, url_for, request
 def index():
     return render_template('index.html', title='Home')
 
-@app.route('/standings', methods=['GET'])
+@app.route('/standings', methods=['GET', 'POST'])
 def standings():
     mongo = MongoData()
-    standings = mongo.user_points().sort("totalPoints", -1)
+    standings = list(mongo.user_points().sort("totalPoints", -1))
+    users = mongo.get_users()
+    # Nice and hardcoded, as all things should be.
+    user_1 = users[0]
+    user_2 = users[1]
+    user_3 = users[2]
+    user_4 = users[3]
+
+    user_1_top_10_drivers = mongo.get_user_top_drivers(user_1)
+    user_2_top_10_drivers = mongo.get_user_top_drivers(user_2)
+    user_3_top_10_drivers = mongo.get_user_top_drivers(user_3)
+    user_4_top_10_drivers = mongo.get_user_top_drivers(user_4)
+    user_1_top_10_constructors = mongo.get_user_top_constructors(user_1)
+    user_2_top_10_constructors = mongo.get_user_top_constructors(user_2)
+    user_3_top_10_constructors = mongo.get_user_top_constructors(user_3)
+    user_4_top_10_constructors = mongo.get_user_top_constructors(user_4)  
+
+    if request.method == 'POST':
+        user = request.form.get('selectUser')
+        mongo.add_penalty(user)
+        mongo.calculate_points(user)
+        mongo.set_total_points(user)
     #mongo.close()
-    return render_template('standings.html', title='Standings', standings=standings)
+    return render_template('standings.html', 
+                           title='Standings', 
+                           standings=standings, 
+                           users=users,
+                           user_1_drivers=user_1_top_10_drivers,
+                           user_2_drivers=user_2_top_10_drivers,
+                           user_3_drivers=user_3_top_10_drivers,
+                           user_4_drivers=user_4_top_10_drivers,
+                           user_1_constructors=user_1_top_10_constructors,
+                           user_2_constructors=user_2_top_10_constructors,
+                           user_3_constructors=user_3_top_10_constructors,
+                           user_4_constructors=user_4_top_10_constructors)
 
 @app.route('/tip', methods=['GET', 'POST'])
 def tip():
