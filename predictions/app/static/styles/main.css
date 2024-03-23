@@ -27,7 +27,7 @@ h1, h2, p{
   
 }
 .yearlyTips{
-  h3 {
+  h3, h4 {
     padding: 0px 16px;
   }
 }

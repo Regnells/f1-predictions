@@ -12,9 +12,10 @@ def index():
 @app.route('/standings', methods=['GET', 'POST'])
 def standings():
     mongo = MongoData()
-    standings = list(mongo.user_points().sort("totalPoints", -1))
+    standings = list(mongo.get_all_user_points().sort("totalPoints", -1))
     users = mongo.get_users()
     # Nice and hardcoded, as all things should be.
+    # Will re-write to be more dynamic in the future(TM)
     user_1 = users[0]
     user_2 = users[1]
     user_3 = users[2]
@@ -32,8 +33,8 @@ def standings():
     if request.method == 'POST':
         user = request.form.get('selectUser')
         mongo.add_penalty(user)
-        mongo.calculate_points(user)
-        mongo.set_total_points(user)
+        mongo.calculate_user_points()
+        mongo.update_user_total()
     #mongo.close()
     return render_template('standings.html', 
                            title='Standings', 
@@ -52,8 +53,10 @@ def standings():
 def tip():
     mongo = MongoData()
     drivers = mongo.get_drivers()
-    races = mongo.get_races()
+    races = mongo.get_future_races()
     users = mongo.get_users()
+    # nasty manual stuff again to make my life easiers
+    users.append("result")
 
     if request.method == 'POST':
         race = request.form.get('selectRace')

@@ -44,6 +44,8 @@
     </tr>
 </table>
 
+
+
 <form action="/standings" method="post" class="formPenalty">
     <h3>Lägg till straffpoäng</h3>
     <select name="selectUser", class="Input">
@@ -56,13 +58,14 @@
 
 <div class="yearlyTips">
     <h3>Årstippningar</h3>
+    <h4>Förare</h4>
     <table>
         <tr>
             <th>Placering</th>
-            <th>{{ users[0] }}</th>
-            <th>{{ users[1] }}</th>
-            <th>{{ users[2] }}</th>
-            <th>{{ users[3] }}</th>
+            <th>{{ users[0].capitalize() }}</th>
+            <th>{{ users[1].capitalize() }}</th>
+            <th>{{ users[2].capitalize() }}</th>
+            <th>{{ users[3].capitalize() }}</th>
         </tr>
         <tr>
             <td>1</td>
