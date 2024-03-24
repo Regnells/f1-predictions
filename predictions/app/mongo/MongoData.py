@@ -52,15 +52,15 @@ class MongoData:
     
     # Remove all raced races
     def get_future_races(self):
-        raced_races = self.get_races()
+        raced_races = self.get_raced_races()
         future_races = self.get_races()
         for i in raced_races:
-            future_races.remove(i["_id"])
+            future_races.remove(i)
         return future_races
     
     def get_raced_races(self):
         races = []
-        for i in self.userGuess.find({}, {"_id": 1}):
+        for i in self.userGuess.find({"result": {"$exists": "true"}}, {"_id": 1}):
             races.append(i["_id"])
         return races
         
@@ -180,5 +180,5 @@ class MongoData:
 # test
 if __name__ == "__main__":
     mongo = MongoData()
-    mongo.update_user_points()
+    print(mongo.get_raced_races())
     mongo.close()

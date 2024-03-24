@@ -89,17 +89,17 @@ def compare():
     mongo = MongoData()
     
     users = mongo.get_users()
-    races = mongo.get_races()
+    races = mongo.get_raced_races()
     input_user = request.form.get('selectUser')
     input_race = request.form.get('selectRace')
     # Variables declared here to avoid error when page is loaded
     user_guess = None
     race_result = None
-    standings = mongo.user_points().sort("totalPoints", -1)
+    standings = mongo.get_all_user_points().sort("totalPoints", -1)
 
     if request.method == 'POST':
         user_guess = mongo.get_user_guess(input_race, input_user)
-        race_result = mongo.get_race_result(input_race)
+        race_result = mongo.get_race_top_six(input_race)
 
 
     return render_template('compare.html', title="Jämför", 
