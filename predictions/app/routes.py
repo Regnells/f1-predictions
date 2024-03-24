@@ -12,6 +12,10 @@ def index():
 @app.route('/standings', methods=['GET', 'POST'])
 def standings():
     mongo = MongoData()
+    # This will be session based eventually
+    mongo.calculate_user_points()
+    mongo.update_user_total()
+
     standings = list(mongo.get_all_user_points().sort("totalPoints", -1))
     users = mongo.get_users()
     # Nice and hardcoded, as all things should be.
