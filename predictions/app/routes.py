@@ -102,7 +102,7 @@ def compare():
     standings = mongo.get_all_user_points().sort("totalPoints", -1)
 
     if request.method == 'POST':
-        user_guess = mongo.get_user_guess(input_race, input_user)
+        user_guess = mongo.get_user_all_guess(input_race, input_user)
         race_result = mongo.get_race_top_six(input_race)
 
 

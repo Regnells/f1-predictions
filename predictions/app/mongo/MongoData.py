@@ -71,7 +71,7 @@ class MongoData:
         result_list = [value for key, value in query['result'].items()]
         return result_list
         
-    def get_user_guess(self, race, user):
+    def get_user__all_guess(self, race, user):
         race = race.lower()
         user = user.lower()
         query = self.userGuess.find_one({"_id": race}, {"_id": 0})
@@ -134,7 +134,7 @@ class MongoData:
             points = 0
             for race in races:
                 result = self.get_race_top_six(race)
-                guess = self.get_user_guess(race, user)
+                guess = self.get_user__all_guess(race, user)
                 for i in range(0, len(guess)):
                     if guess[i] == result[i]:
                         points += 2
