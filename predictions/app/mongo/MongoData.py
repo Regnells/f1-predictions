@@ -66,13 +66,12 @@ class MongoData:
         
     # Get winners from race, returns list of winners.
     def get_race_top_six(self, race):
-        race = race.lower()
-        query = self.userGuess.find_one({"_id": race.lower()}, {"_id": 0})
+        race = race
+        query = self.userGuess.find_one({"_id": race}, {"_id": 0})
         result_list = [value for key, value in query['result'].items()]
         return result_list
         
-    def get_user__all_guess(self, race, user):
-        race = race.lower()
+    def get_user_all_guess(self, race, user):
         user = user.lower()
         query = self.userGuess.find_one({"_id": race}, {"_id": 0})
         # Getting the actual race from the query
@@ -134,7 +133,7 @@ class MongoData:
             points = 0
             for race in races:
                 result = self.get_race_top_six(race)
-                guess = self.get_user__all_guess(race, user)
+                guess = self.get_user_all_guess(race, user)
                 for i in range(0, len(guess)):
                     if guess[i] == result[i]:
                         points += 2
@@ -180,5 +179,8 @@ class MongoData:
 # test
 if __name__ == "__main__":
     mongo = MongoData()
-    print(mongo.get_raced_races())
-    mongo.close()
+    races = mongo.get_raced_races()
+    for i in races:
+        print(i)
+        print(mongo.get_user_all_guess(i, "martin"))
+    
